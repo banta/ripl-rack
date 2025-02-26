@@ -34,7 +34,7 @@ module Ripl::Rack
 
     def initialize(config_ru=nil)
       config_ru ||= ENV['RACK_CONFIG'] || 'config.ru'
-      abort(MESSAGE % config_ru) unless File.exists? config_ru
+      abort(MESSAGE % config_ru) unless File.exist? config_ru
       @app = Kernel.eval("Rack::Builder.new { #{File.read(config_ru)} }")
       @env = ENV['RACK_ENV'] || 'development'
     end
